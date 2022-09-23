@@ -2,41 +2,35 @@ import { React, Component, useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import  Header   from './components/header';
 
-class MainApp extends Component {
-  constructor(props){
-	  super(props);
-      var total_timer = 20; //seconds.
-      var acc = 0;
+const MainApp = () => {
+	var acc = 0;
+	var total_timer = 20;
+	[data, setData] = useState(0);
 
-  }
- // componentDidMount(){
-    //   useEffect( ()=> 
-    //   {
-    //     	const interval = setInterval( () => {
-    //       	++acc;
-    //     	if (acc === total_timer){
-    //         	clearInterval(interval);
-    //         } // end if   
-    //         else {
-    //         	setData(acc/total_timer);
-    //            // console.log(acc);
-    //         } // end else
-    //       }, 2000); // end const interval 
-
-    //   });
-//  }
+useEffect( ()=>{
+    const interval = setInterval( () => {
+    	++acc;
+    	if (acc === total_timer){
+    	 	clearInterval(interval);
+    	} // end if   
+    	else {
+		var	progress = acc/total_timer;
+			setData(progress);
+    		console.log(acc);
+    		console.log(data);
+    	} // end else
+    }, 1000); // end const interval 
+}, []);
   
-  render(){
-	  return(
+	return(
     <View style={[styles.container, {flexDirection: "column", backgroundColor:"#7F88DB" }]}>
         <View style={{ flex: 1  }}>
-		<Header> </Header>
+		<Header progress={data}> </Header>
         </View>
         <View style={{ flex: 5, backgroundColor: "darkorange" }} />
         <View style={{ flex: 2, backgroundColor: "green" }} />
     </View>
-  );
-	}
+	);
 }
 
 const styles = StyleSheet.create({
