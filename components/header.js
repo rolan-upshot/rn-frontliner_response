@@ -8,7 +8,6 @@ const Header= (props) =>  {
             <View>
                 <View>
                     <Progress.Bar progress={data} width={200} />
-                    <Text>Hello world!</Text>
                 </View>
                 <Text style={{color: "white", fontWeight: "bold"}}>Corrective Feedback</Text>
                 <Text style={{color: "white"}}>Monday, Sept 23, 2022 at 10:55am</Text>

@@ -3,23 +3,25 @@ import { StyleSheet, Text, View } from 'react-native';
 import  Header   from './components/header';
 
 const MainApp = () => {
-	var acc = 0;
-	var total_timer = 20;
+	var cntr = 0;
 	[data, setData] = useState(0);
+	var timer_interval_ms = 250;
+	time_limit = 20;
+	var total_beats = time_limit * 1000/timer_interval_ms;
 
 useEffect( ()=>{
     const interval = setInterval( () => {
-    	++acc;
-    	if (acc === total_timer){
+    	++cntr;
+    	if (cntr > total_beats){
     	 	clearInterval(interval);
     	} // end if   
     	else {
-		var	progress = acc/total_timer;
+		var	progress = cntr/total_beats;
 			setData(progress);
-    		console.log(acc);
-    		console.log(data);
+    		console.log(cntr);
+    		console.log(progress);
     	} // end else
-    }, 1000); // end const interval 
+    }, timer_interval_ms); // end const interval 
 }, []);
   
 	return(
